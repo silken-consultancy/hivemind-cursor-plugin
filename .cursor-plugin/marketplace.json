@@ -1,0 +1,11 @@
+{
+  "name": "hivemind",
+  "owner": { "name": "Silken" },
+  "plugins": [
+    {
+      "name": "hivemind",
+      "source": "plugins/hivemind",
+      "description": "HiveMind — memória + identidade persistente para o seu agente, via Porta B (bearer)."
+    }
+  ]
+}

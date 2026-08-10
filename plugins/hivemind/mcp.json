@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "engram": {
+      "url": "https://api.hivemind.ia.br/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer ${HIVEMIND_TOKEN}"
+      }
+    }
+  }
+}
