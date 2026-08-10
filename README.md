@@ -41,3 +41,9 @@ plugins/hivemind/
 
 ---
 _Parte do arco do conector HiveMind. Path A (mTLS) é Enterprise-only; este plugin usa a Porta B._
+
+## Se o token não for pedido no import
+
+O `mcp.json` usa `${HIVEMIND_TOKEN}` (resolvido pela `variable` declarada no manifesto). Se a sua
+versão do Cursor não pedir o valor no Configure, edite `plugins/hivemind/mcp.json` na sua cópia local
+e troque `${HIVEMIND_TOKEN}` pelo seu `fospb_...` — **sem commitar**.

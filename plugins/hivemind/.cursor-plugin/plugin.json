@@ -1,18 +1,20 @@
 {
   "name": "hivemind",
-  "description": "HiveMind — camada de memória e identidade (engram) via Porta B. Traz /boot e /end-session e conecta o engram como MCP server.",
+  "displayName": "HiveMind",
   "version": "0.0.1",
+  "description": "HiveMind — camada de memória e identidade (engram) via Porta B. Conecta o engram como MCP server e traz /boot e /end-session.",
+  "author": { "name": "Silken" },
+  "license": "MIT",
+  "keywords": ["hivemind", "memory", "identity", "mcp", "engram", "cursor"],
   "variables": {
     "type": "object",
     "properties": {
       "HIVEMIND_TOKEN": {
         "type": "string",
         "title": "HiveMind device token",
-        "description": "Cole o token fospb_ emitido na dashboard do HiveMind. Fica só na sua máquina — não é gravado no repositório."
+        "description": "Cole o token fospb_ emitido na dashboard do HiveMind. Fica só na sua máquina; não é gravado no repositório."
       }
     },
     "required": ["HIVEMIND_TOKEN"]
-  },
-  "mcpServers": "mcp.json",
-  "commands": "commands/"
+  }
 }
