@@ -1,11 +1,10 @@
-# HiveMind — Cursor Plugin (spike)
+# HiveMind — Cursor Plugin
 
 Instala o **HiveMind** no Cursor como um plugin nativo: conecta o `engram` (memória + identidade
-persistente) como MCP server via **Porta B** (bearer, sem mTLS) e traz os comandos `/boot` e
-`/end-session`.
+persistente) como MCP server remoto, autenticado pelo seu token de device.
 
-Este é o **spike de validação** da via-plugin: prova que um plugin do Cursor consegue empacotar uma
-conexão MCP **remota + bearer** com o token injetado por-usuário, sem admin e sem file-drop.
+O plugin não carrega nenhum procedimento. O início e o fim de sessão são **servidos pelo engram**
+como prompts MCP (`boot` e `end-session`), então você roda sempre a versão atual, sem cópia local.
 
 ## Segurança
 
@@ -13,34 +12,38 @@ conexão MCP **remota + bearer** com o token injetado por-usuário, sem admin e 
   placeholder. O valor real (o seu `fospb_...`) é pedido pelo Cursor no momento do install e fica
   só na sua máquina.
 - O endpoint é o ingress público do produto (`https://api.hivemind.ia.br/v1/mcp`); a autenticação
-  é o bearer por-device, escopado e revogável.
+  é o token por-device, escopado e revogável.
 
 ## Instalar
 
 1. No Cursor: **Customize → Plugins → importar** este repositório (git URL ou pasta local).
 2. Em **Configure**, cole o seu token no campo **HiveMind device token** (`HIVEMIND_TOKEN`).
-   - Gere o token na dashboard do HiveMind (emissão do `fospb_`).
+   - Gere o token na dashboard do HiveMind.
 3. Reinicie/abra uma nova conversa no agente.
 
-## Verificar (o que o spike prova)
+## Usar
 
-- [ ] **Conexão** — o MCP server `engram` aparece conectado e as tools `fos_*` respondem.
-- [ ] **Token injection** — funciona com o token no `Configure`, sem nada de secreto no repo.
-- [ ] **Frame** — `/boot` dispara `fos_procedure(id:"boot")` e o procedimento roda.
+- **Início de sessão:** digite `/` no chat do agente e escolha o prompt `boot` do servidor `engram`.
+- **Fim de sessão:** digite `/` e escolha o prompt `end-session` do servidor `engram`.
+
+Se a sua versão do Cursor não listar os prompts do servidor, peça ao agente: _"rode o procedimento
+de boot servido pelo engram"_ (ou _"de end-session"_, ao encerrar). Se o engram não responder, a
+sessão não começa — o agente deve parar e avisar, nunca improvisar.
+
+## Verificar
+
+- [ ] **Conexão** — o MCP server `engram` aparece conectado em Settings → MCP.
+- [ ] **Token** — funciona com o token no `Configure`, sem nada de secreto no repo.
+- [ ] **Prompts** — `/` lista `boot` e `end-session` do `engram`, e o `boot` inicia a sessão.
 
 ## Estrutura
 
 ```
 .cursor-plugin/marketplace.json     # marketplace (permite crescer p/ outros plugins)
 plugins/hivemind/
-  .cursor-plugin/plugin.json        # manifesto: variables + mcpServers + commands
+  .cursor-plugin/plugin.json        # manifesto: nome, descrição e a variável HIVEMIND_TOKEN
   mcp.json                          # engram: url + Authorization: Bearer ${HIVEMIND_TOKEN}
-  commands/boot.md                  # /boot  -> fos_procedure(boot)
-  commands/end-session.md           # /end-session -> fos_procedure(end-session)
 ```
-
----
-_Parte do arco do conector HiveMind. Path A (mTLS) é Enterprise-only; este plugin usa a Porta B._
 
 ## Se o token não for pedido no import
 

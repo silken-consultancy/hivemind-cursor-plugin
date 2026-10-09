@@ -1,8 +1,8 @@
 {
   "name": "hivemind",
   "displayName": "HiveMind",
-  "version": "0.0.1",
-  "description": "HiveMind — camada de memória e identidade (engram) via Porta B. Conecta o engram como MCP server e traz /boot e /end-session.",
+  "version": "0.0.2",
+  "description": "HiveMind — camada de memória e identidade (engram). Conecta o engram como MCP server; boot e end-session são servidos por ele como prompts MCP.",
   "author": { "name": "Silken" },
   "license": "MIT",
   "keywords": ["hivemind", "memory", "identity", "mcp", "engram", "cursor"],
