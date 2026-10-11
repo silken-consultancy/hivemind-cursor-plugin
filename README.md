@@ -26,9 +26,11 @@ como prompts MCP (`boot` e `end-session`), então você roda sempre a versão at
 - **Início de sessão:** digite `/` no chat do agente e escolha o prompt `boot` do servidor `engram`.
 - **Fim de sessão:** digite `/` e escolha o prompt `end-session` do servidor `engram`.
 
-Se a sua versão do Cursor não listar os prompts do servidor, peça ao agente: _"rode o procedimento
-de boot servido pelo engram"_ (ou _"de end-session"_, ao encerrar). Se o engram não responder, a
-sessão não começa — o agente deve parar e avisar, nunca improvisar.
+Se a sua versão do Cursor não listar os prompts do servidor, peça ao agente na conversa principal:
+_"chame `engram_boot`"_ ao começar e _"chame `engram_end_session`"_ ao encerrar — são as mesmas
+ferramentas que os prompts `boot` e `end-session` usam (o servidor também orienta o agente a fazê-lo
+sozinho). Se o engram não responder, a sessão não começa — o agente deve parar e avisar, nunca
+improvisar.
 
 ## Verificar
 
