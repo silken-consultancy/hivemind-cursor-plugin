@@ -6,15 +6,15 @@
     "email": "silken-agent@users.noreply.github.com"
   },
   "metadata": {
-    "description": "HiveMind — memória + identidade persistente para o seu agente de IA, via Porta B (bearer).",
-    "version": "0.0.1",
+    "description": "HiveMind — memória + identidade persistente para o seu agente de IA.",
+    "version": "0.0.2",
     "pluginRoot": "plugins"
   },
   "plugins": [
     {
       "name": "hivemind",
       "source": "hivemind",
-      "description": "Conecta o engram (memória + identidade) como MCP server e traz /boot e /end-session."
+      "description": "Conecta o engram (memória + identidade) como MCP server; boot e end-session são servidos por ele."
     }
   ]
 }
