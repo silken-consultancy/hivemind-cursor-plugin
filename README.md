@@ -22,6 +22,28 @@ conexão MCP **remota + bearer** com o token injetado por-usuário, sem admin e 
    - Gere o token na dashboard do HiveMind (emissão do `fospb_`).
 3. Reinicie/abra uma nova conversa no agente.
 
+## Um projeto por conexão
+
+O `mcp.json` do plugin é um arquivo estático e **não sabe qual projeto você usa** — por isso a
+entrada que ele traz (`engram`) fica **sem projeto** e serve só à memória. Para trabalhar dentro de
+um projeto específico, adicione **uma entrada por projeto** na configuração MCP do Cursor
+(`~/.cursor/mcp.json`, ou `.cursor/mcp.json` no repositório), com a URL do projeto mostrada na
+Tela 3 do app (a mesma URL do ingress com `?project=<slug>`):
+
+```json
+{
+  "mcpServers": {
+    "hivemind-<slug>": {
+      "url": "https://api.hivemind.ia.br/v1/mcp?project=<slug>",
+      "headers": { "Authorization": "Bearer ${HIVEMIND_TOKEN}" }
+    }
+  }
+}
+```
+
+Dois projetos = duas entradas (`hivemind-alpha`, `hivemind-beta`), cada uma com o seu `?project=`.
+Servidores antigos ignoram o `?project=`; não há segredo na URL.
+
 ## Verificar (o que o spike prova)
 
 - [ ] **Conexão** — o MCP server `engram` aparece conectado e as tools `fos_*` respondem.
